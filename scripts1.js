@@ -1,47 +1,75 @@
-// scripts.js
+const CONFIG = {
+  STAR_COUNT: 500,
+  STAR_SPEED: 2,
+  STAR_COLOR: '#00f0ff',
+  CONSTELLATION_POINTS: 120,
+  CONSTELLATION_DISTANCE: 100,
+  PRELOADER_DELAY: 5000
+};
 
-// Starfield background
+// ============================================
+// Starfield Animation
+// ============================================
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 let stars = [];
+let canvasWidth = 0;
+let canvasHeight = 0;
 
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvasWidth = window.innerWidth;
+  canvasHeight = window.innerHeight;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  
+  // Recreate stars with new dimensions
+  createStars(CONFIG.STAR_COUNT);
 }
 
 function createStars(count) {
   stars = [];
   for (let i = 0; i < count; i++) {
     stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      z: Math.random() * canvas.width
+      x: Math.random() * canvasWidth,
+      y: Math.random() * canvasHeight,
+      z: Math.random() * canvasWidth  // Depth for parallax effect
     });
   }
 }
 
 function drawStars() {
-  const cx = canvas.width / 2;
-  const cy = canvas.height / 2;
-  const focalLength = canvas.width / 2;
+  const centerX = canvasWidth / 2;
+  const centerY = canvasHeight / 2;
+  const focalLength = canvasWidth / 2;
 
   ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
   for (let i = 0; i < stars.length; i++) {
-    let star = stars[i];
-    star.z -= 2;
-    if (star.z <= 0) star.z = canvas.width;
-    let k = focalLength / star.z;
-    let x = (star.x - cx) * k + cx;
-    let y = (star.y - cy) * k + cy;
-    if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) continue;
+    const star = stars[i];
+    
+    // Move star towards viewer
+    star.z -= CONFIG.STAR_SPEED;
+    if (star.z <= 0) {
+      star.z = canvasWidth;
+    }
 
-    let size = (1 - star.z / canvas.width) * 2;
+    // 3D projection
+    const scale = focalLength / star.z;
+    const x = (star.x - centerX) * scale + centerX;
+    const y = (star.y - centerY) * scale + centerY;
+
+    // Skip stars outside viewport
+    if (x < 0 || x >= canvasWidth || y < 0 || y >= canvasHeight) {
+      continue;
+    }
+
+    // Size based on depth
+    const size = (1 - star.z / canvasWidth) * 2;
+    
     ctx.beginPath();
     ctx.arc(x, y, size, 0, Math.PI * 2);
-    ctx.fillStyle = '#00f0ff';
+    ctx.fillStyle = CONFIG.STAR_COLOR;
     ctx.fill();
   }
 }
@@ -51,22 +79,33 @@ function animateStarfield() {
   requestAnimationFrame(animateStarfield);
 }
 
+// Initialize starfield
 resizeCanvas();
-createStars(500);
 animateStarfield();
-window.addEventListener('resize', () => {
-  resizeCanvas();
-  createStars(500);
-});
 
-// Mobile Nav Toggle
+// Handle window resize
+window.addEventListener('resize', resizeCanvas);
+
+// ============================================
+// Mobile Navigation
+// ============================================
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
+
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Stellar Mode Toggle (press M)
+// Close menu when clicking a link
+document.querySelectorAll('#navLinks a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
+
+// ============================================
+// Stellar Mode (Press 'K' to toggle)
+// ============================================
 document.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'k') {
     document.body.classList.toggle('stellar-mode');
@@ -75,27 +114,35 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// 🌌 Constellation Canvas Setup
+// ============================================
+// Constellation Canvas
+// ============================================
 const constellationCanvas = document.createElement('canvas');
 constellationCanvas.id = 'constellationCanvas';
-constellationCanvas.style.position = 'fixed';
-constellationCanvas.style.top = '0';
-constellationCanvas.style.left = '0';
-constellationCanvas.style.pointerEvents = 'none';
-constellationCanvas.style.width = '100%';
-constellationCanvas.style.height = '100%';
-constellationCanvas.style.zIndex = '5';
+constellationCanvas.style.cssText = `
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+`;
 document.body.appendChild(constellationCanvas);
 
 const cctx = constellationCanvas.getContext('2d');
-let points = [];
+let constellationPoints = [];
+let constellationAnimationId = null;
 
 function resizeConstellation() {
   constellationCanvas.width = window.innerWidth;
   constellationCanvas.height = window.innerHeight;
-  points = [];
-  for (let i = 0; i < 120; i++) {
-    points.push({
+  
+  // Generate constellation points
+  constellationPoints = [];
+  for (let i = 0; i < CONFIG.CONSTELLATION_POINTS; i++) {
+    constellationPoints.push({
       x: Math.random() * constellationCanvas.width,
       y: Math.random() * constellationCanvas.height,
       vx: (Math.random() - 0.5) * 0.2,
@@ -108,25 +155,31 @@ function drawConstellations() {
   cctx.clearRect(0, 0, constellationCanvas.width, constellationCanvas.height);
   cctx.fillStyle = '#fff';
 
-  points.forEach((p, i) => {
-    p.x += p.vx;
-    p.y += p.vy;
+  constellationPoints.forEach((point, i) => {
+    // Update position
+    point.x += point.vx;
+    point.y += point.vy;
 
-    if (p.x < 0 || p.x > constellationCanvas.width) p.vx *= -1;
-    if (p.y < 0 || p.y > constellationCanvas.height) p.vy *= -1;
+    // Bounce off edges
+    if (point.x < 0 || point.x > constellationCanvas.width) point.vx *= -1;
+    if (point.y < 0 || point.y > constellationCanvas.height) point.vy *= -1;
 
+    // Draw point
     cctx.beginPath();
-    cctx.arc(p.x, p.y, 1.5, 0, 2 * Math.PI);
+    cctx.arc(point.x, point.y, 1.5, 0, 2 * Math.PI);
     cctx.fill();
 
-    for (let j = i + 1; j < points.length; j++) {
-      const dist = Math.hypot(p.x - points[j].x, p.y - points[j].y);
-      if (dist < 100) {
+    // Draw lines to nearby points
+    for (let j = i + 1; j < constellationPoints.length; j++) {
+      const otherPoint = constellationPoints[j];
+      const distance = Math.hypot(point.x - otherPoint.x, point.y - otherPoint.y);
+      
+      if (distance < CONFIG.CONSTELLATION_DISTANCE) {
         cctx.strokeStyle = 'rgba(191, 0, 255, 0.2)';
         cctx.lineWidth = 0.5;
         cctx.beginPath();
-        cctx.moveTo(p.x, p.y);
-        cctx.lineTo(points[j].x, points[j].y);
+        cctx.moveTo(point.x, point.y);
+        cctx.lineTo(otherPoint.x, otherPoint.y);
         cctx.stroke();
       }
     }
@@ -135,7 +188,7 @@ function drawConstellations() {
 
 function animateConstellations() {
   drawConstellations();
-  requestAnimationFrame(animateConstellations);
+  constellationAnimationId = requestAnimationFrame(animateConstellations);
 }
 
 function toggleConstellationCanvas() {
@@ -145,45 +198,28 @@ function toggleConstellationCanvas() {
     animateConstellations();
   } else {
     constellationCanvas.style.display = 'none';
+    if (constellationAnimationId) {
+      cancelAnimationFrame(constellationAnimationId);
+      constellationAnimationId = null;
+    }
   }
 }
 
+// Initialize constellation canvas
 resizeConstellation();
 window.addEventListener('resize', resizeConstellation);
-constellationCanvas.style.display = 'none';
 
-window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  preloader.style.opacity = '0';
-  preloader.style.visibility = 'hidden';
-  setTimeout(() => preloader.remove(), 500); // Optional: fully remove from DOM
-});
-
+// ============================================
+// Preloader
+// ============================================
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   const blackHole = document.getElementById('blackHole');
-  const profileTarget = document.getElementById('profilePicTarget');
-
-  // Get the profile image container's position
-  const targetRect = profileTarget.getBoundingClientRect();
-
-  // Get center of screen
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
-
-  // Get offset to move blackHole to profile pic
-  const offsetX = targetRect.left + targetRect.width / 2 - centerX;
-  const offsetY = targetRect.top + targetRect.height / 2 - centerY;
-
-  // Move and shrink black hole into position
-  blackHole.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(0.95)`;
-  blackHole.style.transition = 'transform 1s ease-in-out';
-
+  
+  // Just show it spinning for however long you want
   setTimeout(() => {
     preloader.style.opacity = '0';
     preloader.style.visibility = 'hidden';
-  }, 1200);
-
-
-  // Optional: replace with actual image later or fade it in
+    setTimeout(() => preloader.remove(), 500);
+  }, 3000); // Change this number - 5000 = 5 seconds
 });
