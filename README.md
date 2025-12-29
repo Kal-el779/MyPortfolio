@@ -13,7 +13,7 @@ Welcome aboard! This is the source code for **Voody kalpesh rao**, my personal p
 - **Interactive Navigation** – Seamless, responsive transitions between sections.
 - **Minimalist Contact Form** – Glassmorphic design for clean communication.
 - **Custom Button Interactions** – Adds a futuristic feel when navigating.
-- **Easter Eggs (4 total)** – Hidden interactive surprises for curious minds 
+- **Easter Eggs ** – Hidden interactive surprises.
 
 ---
 
