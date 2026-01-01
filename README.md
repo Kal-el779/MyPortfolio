@@ -21,8 +21,7 @@ Welcome aboard! This is the source code for **Voody kalpesh rao**, my personal p
 
 ```bash
 📦Voody
- ┣ 📂assets/         # Images, Icons, Fonts
- ┣ 📂css/            # All stylings (with custom variables and effects)
- ┣ 📂js/             # Animations, Interactions, Space FX
+ ┣ styles.css            # All stylings (with custom variables and effects)
+ ┣ scripts.js             # Animations, Interactions, Space FX
  ┣ 📄index.html      # Main page
  ┣ 📄README.md       # You're reading it!
