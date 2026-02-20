@@ -1,0 +1,908 @@
+/* ============================================
+   PORTFOLIO STYLES - ORGANIZED
+   ============================================ */
+
+/* ============================================
+   1. IMPORTS & CSS VARIABLES
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+:root {
+  --bg-dark: #0d0d0d;
+  --electric-blue: #7DF9FF;
+  --neon-purple: #bf00ff;
+  --silver: #f0f0f0;
+  --glass-blur: rgba(255, 255, 255, 0.05);
+  --font-heading: 'Orbitron', sans-serif;
+}
+
+/* ============================================
+   2. GLOBAL RESET & BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--silver);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  color: var(--electric-blue);
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--electric-blue);
+  text-align: center;
+}
+
+/* ============================================
+   3. HEADER / HERO SECTION
+   ============================================ */
+header {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  z-index: 1;
+  padding: 2rem 1rem;
+}
+
+#starfield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 2rem;
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  /* INTERACTION FIX: Allow clicks to pass through text to canvas */
+  pointer-events: none;
+}
+
+/* Restore interaction for interactive elements */
+.hero-content>.hero-buttons,
+.hero-content>.stellar-toggle,
+.hero-content>a,
+.hero-content>button {
+  pointer-events: auto;
+}
+
+/* Profile pic is just an image, but if user wants to select/save it, allow it. */
+.profile-pic {
+  pointer-events: auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--electric-blue);
+  box-shadow: 0 0 20px var(--electric-blue);
+}
+
+.tagline {
+  font-size: 1.3rem;
+  color: var(--neon-purple);
+  margin-top: 0.25rem;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--silver);
+  margin-bottom: 1rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.hero-buttons .btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--glass-blur);
+  border: 1px solid var(--electric-blue);
+  color: var(--electric-blue);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero-buttons .btn:hover {
+  background: var(--electric-blue);
+  color: #000;
+  box-shadow: 0 0 10px var(--electric-blue);
+}
+
+/* ============================================
+   4. NAVIGATION
+   ============================================ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  z-index: 10;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links li a {
+  color: var(--silver);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: var(--electric-blue);
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--silver);
+  cursor: pointer;
+}
+
+/* ============================================
+   5. GENERAL SECTION STYLES
+   ============================================ */
+.section {
+  padding: 5rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.bio,
+.timeline-item,
+.experience-card ul,
+.project-card,
+.service-card {
+  background: var(--glass-blur);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+/* ============================================
+   6. ABOUT SECTION
+   ============================================ */
+.timeline {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ============================================
+   7. SKILLS SECTION
+   ============================================ */
+.skills-category {
+  margin-bottom: 3rem;
+}
+
+.category-title {
+  color: var(--electric-blue);
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+  text-align: left;
+  font-weight: 600;
+}
+
+.skills-grid-new {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.skill-item {
+  background: var(--glass-blur);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  border: 1px solid rgba(125, 249, 255, 0.3);
+  backdrop-filter: blur(10px);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--silver);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-item:hover {
+  background: rgba(125, 249, 255, 0.1);
+  border-color: var(--electric-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(125, 249, 255, 0.2);
+  color: var(--electric-blue);
+}
+
+/* ============================================
+   8. PROJECTS SECTION
+   ============================================ */
+.project-card,
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover,
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px var(--neon-purple);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.expand-btn {
+  background: var(--electric-blue);
+  color: #000;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.expand-btn:hover {
+  transform: rotate(90deg);
+  box-shadow: 0 0 15px var(--electric-blue);
+}
+
+.project-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  margin-top: 1.5rem;
+}
+
+.project-details.active {
+  max-height: 2000px;
+}
+
+.detail-section {
+  margin-bottom: 1.5rem;
+}
+
+.detail-section h4 {
+  color: var(--electric-blue);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-family: var(--font-heading);
+}
+
+.detail-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.detail-section ul li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.detail-section ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--electric-blue);
+  font-weight: bold;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(125, 249, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(125, 249, 255, 0.2);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--electric-blue);
+  font-family: var(--font-heading);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--silver);
+  margin-top: 0.25rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.project-btn {
+  padding: 0.6rem 1.2rem;
+  background: var(--electric-blue);
+  color: #000;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.project-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--electric-blue);
+}
+
+.project-btn.secondary {
+  background: transparent;
+  border: 1px solid var(--electric-blue);
+  color: var(--electric-blue);
+}
+
+.project-btn.secondary:hover {
+  background: var(--electric-blue);
+  color: #000;
+}
+
+/* ============================================
+   9. BLOG SECTION
+   ============================================ */
+.blog-intro {
+  text-align: center;
+  color: var(--silver);
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.blog-card {
+  background: var(--glass-blur);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--electric-blue), var(--neon-purple));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover::before {
+  transform: scaleX(1);
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(125, 249, 255, 0.2);
+  border-color: var(--electric-blue);
+}
+
+.blog-date {
+  color: var(--neon-purple);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.blog-card h3 {
+  color: var(--electric-blue);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+  line-height: 1.3;
+}
+
+.blog-card p {
+  color: var(--silver);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  background: rgba(125, 249, 255, 0.1);
+  color: var(--electric-blue);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  border: 1px solid rgba(125, 249, 255, 0.2);
+}
+
+.blog-link {
+  color: var(--electric-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blog-link:hover {
+  color: var(--neon-purple);
+  gap: 1rem;
+}
+
+/* ============================================
+   10. SERVICES SECTION
+   ============================================ */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* ============================================
+   11. CONTACT SECTION
+   ============================================ */
+.contact {
+  padding: 5rem 2rem;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--electric-blue);
+}
+
+.contact p {
+  margin-bottom: 2rem;
+  color: var(--silver);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-blur);
+  color: var(--silver);
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: var(--electric-blue);
+  color: #000;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover:not(:disabled) {
+  background: var(--neon-purple);
+  color: #fff;
+  box-shadow: 0 0 10px var(--neon-purple);
+}
+
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   12. FOOTER
+   ============================================ */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--silver);
+  background: #0a0a0a;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   13. PRELOADER
+   ============================================ */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#blackHole {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #000;
+  /* Thin photon ring (bright white/yellow) around the void */
+  box-shadow: 0 0 15px #ffaa00, inset 0 0 20px #000;
+  position: relative;
+  z-index: 2;
+  /* 3D Transform */
+  transform-style: preserve-3d;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Accretion Disk (Main Swirl) */
+/* Accretion Disk (Muted/Removed per user request) */
+#blackHole::before {
+  content: '';
+  display: none;
+}
+
+/* Matter Absorption Particles */
+.matter-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #ffaa00;
+  box-shadow: 0 0 5px #ff4500;
+  pointer-events: none;
+  z-index: 10;
+  /* Start from random position via JS inline styles, then animate to center */
+}
+
+/* Inner Glow / Lensing Effect (The "atmosphere" behind) */
+#blackHole::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  border-radius: 50%;
+  /* Ambient glow of the singularity */
+  background: radial-gradient(circle, transparent 50%, rgba(255, 69, 0, 0.2) 70%, transparent 100%);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 50px rgba(255, 100, 0, 0.3);
+  z-index: -1;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+/* Hide the old flat vortex div via CSS */
+.black-hole-vortex {
+  display: none;
+}
+
+.profile-pic-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #00f0ff;
+  box-shadow: 0 0 12px #00f0ffaa;
+  transition: transform 1.5s ease;
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================
+   14. ANIMATIONS
+   ============================================ */
+@keyframes spinRing {
+  0% {
+    transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 50px rgba(255, 100, 0, 0.3);
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    box-shadow: 0 0 70px rgba(255, 100, 0, 0.5);
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes absorb {
+  0% {
+    opacity: 1;
+    transform: translate(var(--tx), var(--ty)) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.1);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes swirl {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseTrail {
+  0% {
+    transform: scale(0.9) translate(-30px, -30px);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.2) translate(-30px, -30px);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scale(0.9) translate(-30px, -30px);
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   15. SCROLL ANIMATIONS
+   ============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation for multiple items */
+.fade-in:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.fade-in:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.fade-in:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.fade-in:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.fade-in:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+/* ============================================
+   16. STELLAR MODE TOGGLE BUTTON
+   ============================================ */
+.stellar-toggle {
+  background: var(--glass-blur);
+  border: 1px solid var(--neon-purple);
+  color: var(--neon-purple);
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.stellar-toggle:hover {
+  background: var(--neon-purple);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-purple);
+  transform: scale(1.05);
+}
+
+.stellar-toggle.active {
+  background: var(--neon-purple);
+  color: #000;
+  box-shadow: 0 0 20px var(--neon-purple);
+}
+
+/* ============================================
+   17. STELLAR MODE (Press 'K' or Click Button)
+   ============================================ */
+body.stellar-mode {
+  background: radial-gradient(ellipse at center, #0d0d0d 0%, #090016 100%);
+}
+
+body.stellar-mode #starfield {
+  filter: brightness(1.5) saturate(1.2) blur(0.5px);
+}
+
+body.stellar-mode .hero-content h1,
+body.stellar-mode .hero-content .tagline {
+  color: #bf00ff;
+  text-shadow: 0 0 8px #bf00ff, 0 0 12px #00f0ff;
+}
+
+body.stellar-mode .profile-pic {
+  border-color: #bf00ff;
+  box-shadow: 0 0 20px #bf00ff;
+}
+
+body.stellar-mode .btn {
+  border-color: #bf00ff;
+  color: #bf00ff;
+}
+
+body.stellar-mode .btn:hover {
+  background: #bf00ff;
+  color: #000;
+  box-shadow: 0 0 10px #bf00ff;
+}
+
+/* ============================================
+   18. RESPONSIVE / MOBILE STYLES
+   ============================================ */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #111;
+    border: 1px solid #222;
+    padding: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hero-content {
+    padding: 2rem 1rem;
+  }
+
+  .category-title {
+    font-size: 1.1rem;
+  }
+
+  .skill-item {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stellar-toggle {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+}

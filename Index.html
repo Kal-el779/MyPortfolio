@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voody Kalpesh Rao - Portfolio</title>
+  <link rel="stylesheet" href="Style.css" />
+  <script defer src="Script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header id="home">
+    <canvas id="starfield"></canvas>
+    <div class="hero-content">
+      <img src="kalpeshprof.jpg" alt="Voody Kalpesh Rao Profile Picture" class="profile-pic" id="profilePicTarget" />
+      <h1>Voody Kalpesh Rao</h1>
+      <p class="tagline">CS Student Living in India | AI And Backend | MLOps Engineer </p>
+      <p class="subtitle">Exploring the cosmos through AI and data</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="Kalpesh resume.pdf" class="btn" download>View Resume</a>
+        <a href="https://www.linkedin.com/in/kalpeshraovoody" class="btn" target="_blank"
+          rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/Kal-el779" class="btn" target="_blank" rel="noopener noreferrer">Github</a>
+      </div>
+      <!-- STELLAR MODE BUTTON -->
+      <button id="stellarModeBtn" class="stellar-toggle" aria-label="Toggle Stellar Mode">
+        🌌 Stellar Mode
+      </button>
+    </div>
+  </header>
+
+  <nav id="navbar">
+    <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">☰</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#services">Services</a></li>
+    </ul>
+  </nav>
+
+  <section id="about" class="section fade-in">
+    <h2>About Me</h2>
+    <p class="bio">
+      I am a Computer Science and Mathematics student passionate about Machine Learning, AI, and Astronomy. I'm driven
+      by curiosity to explore the intersection of AI and space. I enjoy building intelligent systems that solve
+      real-world problems and aim to contribute to the future of technology.
+    </p>
+    <div class="timeline">
+      <div class="timeline-item">B.Tech in CSM, NSRIT College, 2022–2026 (CGPA: 8.18)</div>
+      <div class="timeline-item">Intermediate, SriChaitanya College, 2020–2022 (78%)</div>
+      <div class="timeline-item">SSC, SriChaitanya Techno School, 2020 (GPA: 9.8)</div>
+    </div>
+  </section>
+
+  <section id="experience" class="section fade-in">
+    <h2>Experience</h2>
+    <div class="experience-card fade-in">
+      <h3>Cloud Computing Intern – APSSDC (April–July 2025)</h3>
+      <ul>
+        <li>Developed a Fully functional website using HTML,CSS,JS</li>
+        <li>Hosted it using AWS S3 bucket</li>
+        <li>Gained Experience in AWS, Cloud Computing and Devops</li>
+      </ul>
+    </div>
+
+    <div class="experience-card fade-in">
+      <h3>Machine Learning Intern – Demy Software Solutions (June–July 2024)</h3>
+      <ul>
+        <li>Developed a crop yield prediction model using regression techniques</li>
+        <li>Achieved R² score of 0.85</li>
+        <li>Gained Experience in ML pipelines, visualization, and performance tuning</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" class="section fade-in">
+    <h2>Skills & Technologies</h2>
+
+    <div class="skills-category">
+      <h3 class="category-title">💻 Programming Languages</h3>
+      <div class="skills-grid-new">
+        <div class="skill-item">Python</div>
+        <div class="skill-item">Java</div>
+        <div class="skill-item">C</div>
+        <div class="skill-item">SQL</div>
+        <div class="skill-item">JavaScript</div>
+        <div class="skill-item">HTML/CSS</div>
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="category-title">🤖 ML & AI Frameworks</h3>
+      <div class="skills-grid-new">
+        <div class="skill-item">TensorFlow</div>
+        <div class="skill-item">PyTorch</div>
+        <div class="skill-item">Scikit-learn</div>
+        <div class="skill-item">OpenCV</div>
+        <div class="skill-item">Pandas</div>
+        <div class="skill-item">NumPy</div>
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="category-title">☁️ Cloud & DevOps</h3>
+      <div class="skills-grid-new">
+        <div class="skill-item">AWS</div>
+        <div class="skill-item">DevOps</div>
+        <div class="skill-item">Git</div>
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="category-title">🛠️ Tools & Platforms</h3>
+      <div class="skills-grid-new">
+        <div class="skill-item">VS Code</div>
+        <div class="skill-item">Jupyter</div>
+        <div class="skill-item">Google Colab</div>
+        <div class="skill-item">FastAPI</div>
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="category-title">📊 Core Competencies</h3>
+      <div class="skills-grid-new">
+        <div class="skill-item">Data Analysis</div>
+        <div class="skill-item">Data Visualization</div>
+        <div class="skill-item">Model Building</div>
+        <div class="skill-item">Machine Learning</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section fade-in">
+    <h2>Projects</h2>
+
+    <!-- VizX Project -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <h3>VizX – Intelligent Data Extraction</h3>
+        <button class="expand-btn" onclick="toggleProject('vizx')">
+          <span id="vizx-icon">+</span>
+        </button>
+      </div>
+      <p>AI tool that reads tabular data from images (like marksheets) and exports to Excel</p>
+      <small>Tech: Python, TensorFlow, OCR, OpenCV, Pandas</small>
+
+      <!-- Expandable Details -->
+      <div class="project-details" id="vizx-details">
+        <div class="detail-section">
+          <h4>🎯 The Challenge</h4>
+          <p>Manual data entry from marksheets and certificates was taking hours. Organizations needed a way to
+            automatically extract tabular data from images and convert it into usable formats.</p>
+        </div>
+
+        <div class="detail-section">
+          <h4>💡 My Solution</h4>
+          <ul>
+            <li>Built custom OCR pipeline using TensorFlow for text recognition</li>
+            <li>Implemented OpenCV for image preprocessing and table detection</li>
+            <li>Created intelligent data structuring using Pandas</li>
+            <li>Automated Excel export with formatting preservation</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h4>📊 Results</h4>
+          <div class="stats-grid">
+            <div class="stat">
+              <span class="stat-number">91%</span>
+              <span class="stat-label">Accuracy</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">80%</span>
+              <span class="stat-label">Time Saved</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Images Processed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h4>🔑 Key Learnings</h4>
+          <p>Learned to handle noisy image data, optimize model performance for real-time processing, and design
+            user-friendly data pipelines. Gained deep understanding of OCR challenges and preprocessing techniques.</p>
+        </div>
+
+        <div class="project-links">
+          <a href="#" class="project-btn" target="_blank" rel="noopener noreferrer">
+            View Code
+          </a>
+          <a href="#" class="project-btn secondary" target="_blank" rel="noopener noreferrer">
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- StellarNet Project -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <h3>StellarNet – Star Classification Using ML</h3>
+        <button class="expand-btn" onclick="toggleProject('stellar')">
+          <span id="stellar-icon">+</span>
+        </button>
+      </div>
+      <p>ML pipeline to classify star types using astrophysical data (90%+ accuracy)</p>
+      <small>Tech: Python, Scikit-learn, Matplotlib</small>
+
+      <!-- Expandable Details -->
+      <div class="project-details" id="stellar-details">
+        <div class="detail-section">
+          <h4>🎯 The Challenge</h4>
+          <p>Astronomers need to classify millions of stars based on spectral data. Manual classification is impractical
+            at scale. Built an ML model to automate star type classification using astrophysical features.</p>
+        </div>
+
+        <div class="detail-section">
+          <h4>💡 My Solution</h4>
+          <ul>
+            <li>Analyzed and cleaned large-scale astronomical datasets</li>
+            <li>Performed feature engineering on spectral characteristics</li>
+            <li>Tested multiple ML algorithms (Random Forest, SVM, Neural Networks)</li>
+            <li>Optimized hyperparameters for best accuracy</li>
+            <li>Created visualizations to interpret model decisions</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h4>📊 Results</h4>
+          <div class="stats-grid">
+            <div class="stat">
+              <span class="stat-number">90%+</span>
+              <span class="stat-label">Accuracy</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">6</span>
+              <span class="stat-label">Star Classes</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">Stars Classified</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h4>🔑 Key Learnings</h4>
+          <p>Deepened understanding of ML model selection, learned to work with imbalanced datasets, and gained
+            experience in scientific computing. Discovered the importance of domain knowledge in feature engineering.
+          </p>
+        </div>
+
+        <div class="project-links">
+          <a href="#" class="project-btn" target="_blank" rel="noopener noreferrer">
+            View Code
+          </a>
+          <a href="#" class="project-btn secondary" target="_blank" rel="noopener noreferrer">
+            Research Paper
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG SECTION -->
+  <section id="blog" class="section fade-in">
+    <h2>Blog & Articles</h2>
+    <p class="blog-intro">Sharing my journey in AI, ML, and software development</p>
+
+    <div class="blog-grid">
+      <article class="blog-card fade-in">
+        <div class="blog-date">Dec 2024</div>
+        <h3>Building a Starfield Animation from Scratch</h3>
+        <p>How I created an interactive 3D starfield using vanilla JavaScript and HTML5 Canvas. Deep dive into parallax
+          effects and performance optimization.</p>
+        <div class="blog-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Canvas</span>
+          <span class="tag">Animation</span>
+        </div>
+        <a href="#" class="blog-link">Read More →</a>
+      </article>
+
+      <article class="blog-card fade-in">
+        <div class="blog-date">Nov 2024</div>
+        <h3>My Journey into Machine Learning</h3>
+        <p>From basic Python to building ML models - lessons learned during my internship at Demy Software Solutions and
+          beyond.</p>
+        <div class="blog-tags">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Career</span>
+          <span class="tag">Python</span>
+        </div>
+        <a href="#" class="blog-link">Read More →</a>
+      </article>
+
+      <article class="blog-card fade-in">
+        <div class="blog-date">Oct 2024</div>
+        <h3>OCR Challenges: What I Learned Building VizX</h3>
+        <p>Real-world challenges in optical character recognition, dealing with noisy data, and optimizing accuracy for
+          production use.</p>
+        <div class="blog-tags">
+          <span class="tag">AI</span>
+          <span class="tag">OCR</span>
+          <span class="tag">TensorFlow</span>
+        </div>
+        <a href="#" class="blog-link">Read More →</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="services" class="section fade-in">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="service-card fade-in">
+        <h3>ML Model Building</h3>
+        <p>I build and train machine learning models using real-world data to create smart, scalable, and human-centered
+          solutions.</p>
+      </div>
+
+      <div class="service-card fade-in">
+        <h3>Data Analysis</h3>
+        <p>From raw datasets to polished visualizations — I uncover trends and insights to support impactful decisions.
+        </p>
+      </div>
+
+      <div class="service-card fade-in">
+        <h3>Cloud Infrastructure on AWS</h3>
+        <p>Design and deploy scalable cloud infrastructure using EC2, S3, RDS, and VPC. I build cost-effective, secure
+          cloud setups tailored to project needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact fade-in" id="contact">
+    <h2>Contact Me</h2>
+    <p>Have a project in mind, want to collaborate, or just want to say hi? Let's connect.</p>
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xaqyjrgp" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <input type="hidden" name="_subject" value="New Portfolio Contact!">
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="formStatus" style="display:none; margin-top: 1rem; padding: 1rem; border-radius: 8px;"></div>
+  </section>
+
+  <div id="preloader">
+    <div class="black-hole-vortex"></div>
+    <div id="blackHole"></div>
+    <p class="loading-text">Spaghettifying data...</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Voody Kalpesh Rao</p>
+  </footer>
+</body>
+
+</html>
